@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Поиск выполняется{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+        <span class="visually-hidden">Загрузка...</span>
+    </div>
+    
+    <h3 class="mt-4">🔍 Поиск вакансий по запросу "{{ search.query }}"</h3>
+    <p class="text-muted lead">Пожалуйста, подождите. Это может занять несколько секунд...</p>
+    
+    <div class="progress mt-4 w-50 mx-auto" style="height: 25px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" 
+             style="width: 100%">
+            <strong>Выполняется поиск...</strong>
+        </div>
+    </div>
+    
+    <div class="mt-4 text-muted">
+        <i class="bi bi-info-circle"></i>
+        Страница автоматически обновится через 5 секунд
+    </div>
+    
+    <meta http-equiv="refresh" content="5">
+</div>
+
+<style>
+    .progress-bar {
+        font-weight: bold;
+        line-height: 25px;
+    }
+</style>
+{% endblock %}

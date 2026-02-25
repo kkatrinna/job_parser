@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Результаты поиска{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>
+        <i class="bi bi-file-text"></i> Результаты поиска
+        <small class="text-muted fs-5">"{{ search.query }}"</small>
+    </h1>
+    
+    <div>
+        <a href="{{ url_for('download', search_id=search.id, format='excel') }}" class="btn btn-success">
+            <i class="bi bi-file-excel"></i> Скачать Excel
+        </a>
+        <a href="{{ url_for('download', search_id=search.id, format='csv') }}" class="btn btn-info">
+            <i class="bi bi-filetype-csv"></i> Скачать CSV
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-briefcase"></i> Всего вакансий</h5>
+                <h2 class="card-text">{{ stats.total }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-cash"></i> С указанием зарплаты</h5>
+                <h2 class="card-text">{{ stats.with_salary }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-geo-alt"></i> Городов</h5>
+                <h2 class="card-text">{{ stats.cities }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0"><i class="bi bi-table"></i> Список вакансий</h5>
+    </div>
+    <div class="card-body">
+        {% if jobs %}
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th>Компания</th>
+                            <th>Зарплата</th>
+                            <th>Город</th>
+                            <th>Опыт</th>
+                            <th>Дата</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>
+                                <strong>{{ job.title }}</strong>
+                            </td>
+                            <td>{{ job.company }}</td>
+                            <td class="{% if job.salary != 'Не указана' %}text-success fw-bold{% endif %}">
+                                {{ format_salary(job.salary) }}
+                            </td>
+                            <td>{{ job.city }}</td>
+                            <td>{{ job.experience or 'Не указан' }}</td>
+                            <td>
+                                {% if job.published_at %}
+                                    {{ job.published_at.strftime('%d.%m.%Y') }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ job.url }}" target="_blank" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-hourglass-split fs-1 text-muted"></i>
+                <h3 class="text-muted mt-3">Поиск выполняется...</h3>
+                <p class="text-muted">Пожалуйста, подождите или обновите страницу через несколько секунд</p>
+                <meta http-equiv="refresh" content="5">
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

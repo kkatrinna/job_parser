@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}О проекте{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-info-circle"></i> О проекте</h4>
+            </div>
+            <div class="card-body">
+                <h3>Парсер вакансий с HeadHunter</h3>
+                <p class="lead">
+                    Веб-приложение для поиска и анализа вакансий с сайта hh.ru
+                </p>
+                
+                <hr>
+                
+                <h5><i class="bi bi-star"></i> Возможности</h5>
+                <ul>
+                    <li>Поиск вакансий по ключевым словам</li>
+                    <li>Фильтрация по городам</li>
+                    <li>Сохранение результатов в базу данных</li>
+                    <li>Экспорт в Excel и CSV</li>
+                    <li>История поисковых запросов</li>
+                    <li>Статистика по найденным вакансиям</li>
+                </ul>
+                
+                <h5 class="mt-4"><i class="bi bi-tools"></i> Технологии</h5>
+                <ul>
+                    <li><strong>Backend:</strong> Python, Flask, SQLAlchemy</li>
+                    <li><strong>Парсинг:</strong> Requests, BeautifulSoup4</li>
+                    <li><strong>Данные:</strong> Pandas, OpenPyXL</li>
+                    <li><strong>Frontend:</strong> Bootstrap 5, jQuery</li>
+                    <li><strong>База данных:</strong> SQLite</li>
+                </ul>
+                
+                <h5 class="mt-4"><i class="bi bi-code-slash"></i> Как это работает</h5>
+                <ol>
+                    <li>Вы вводите поисковый запрос и город</li>
+                    <li>Парсер отправляет запросы к hh.ru</li>
+                    <li>Собирает информацию о вакансиях</li>
+                    <li>Сохраняет данные в базу данных</li>
+                    <li>Отображает результаты в удобной таблице</li>
+                    <li>Позволяет скачать данные в Excel/CSV</li>
+                </ol>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Важно:</strong> Приложение предназначено только для образовательных целей.
+                    Уважайте robots.txt сайтов и не создавайте излишнюю нагрузку.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
