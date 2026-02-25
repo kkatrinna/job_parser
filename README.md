@@ -44,6 +44,7 @@
 ### Пошаговая инструкция
 
 **1. Клонировать репозиторий**
+
 **2. Создать виртуальное окружение**
 Windows
 python -m venv venv
@@ -52,7 +53,9 @@ venv\Scripts\activate
 Linux/Mac
 python3 -m venv venv
 source venv/bin/activate
+
 **3. Установить зависимости**
 pip install -r requirements.txt
+
 **4. Запустить приложение**
 python app.py
